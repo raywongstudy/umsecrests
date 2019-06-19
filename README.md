@@ -36,17 +36,20 @@ driver = webdriver.Chrome(executable_path=executable_path , chrome_options=chrom
 
 ### 1 . SyntaxError : Non-ASCII character '\xe8' in file testing.py on line 11, but no encoding declared; see http://python.org/dev/peps/pep-0263/ for details
 
-> solution : add this in the python file head : -*- coding:UTF-8 -*-
+> solution : add this in the python file head :
+` -*- coding:UTF-8 -*- `
 
 ### 2 . selenium.common.exceptions.WebDriverException: Message: 'chromedriver' executable may have wrong permissions. Please see https://sites.google.com/a/chromium.org/chromedriver/home
 
-> solution : use linux command (" chmod 774 <your file path> ")    e.g(" chmod 774 /home/ubuntu/environment/chromedriver ")
+> solution : use linux command (" chmod 774 <your file path> ")    
+`e.g(" chmod 774 /home/ubuntu/environment/chromedriver ")`
   
 > remind : you can use linux command (" ls -lh ") to check the permissions
 
 ### 3 . selenium.common.exceptions.WebDriverException: Message: unknown error: cannot find Chrome binary
 
 > solution : use linux command (" sudo apt-get install chromium-browser ") to install teh chrome browser file
+`sudo apt-get install chromium-browser`
 
 
 
