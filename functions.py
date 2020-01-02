@@ -73,7 +73,7 @@ class indexPageFunctions(object):
 
             all_comments = []
 
-            print('    data_comments length:',len(data_comments))
+            print('        data_comments:',len(data_comments))
             for data_comment in data_comments:
 
                 comment_name = data_comment.find_element_by_css_selector("._6qw4").text
@@ -87,7 +87,7 @@ class indexPageFunctions(object):
             return all_comments
 
         except:
-            print("    no comments~")
+            print("        no comments~")
 
     def loadMorePosts(driver,times=5):
         for i in range(times):

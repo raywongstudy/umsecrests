@@ -46,7 +46,8 @@ if __name__ == "__main__":
 
     #1 load more posts
     print('1. load more posts~')
-    functions.loadMorePosts(driver,30)
+    scroll_time = input("    How many scroll times:")
+    functions.loadMorePosts(driver,int(scroll_time))
 
     #2 delete the login banner
     print('2. delete the login banner~')
@@ -79,7 +80,7 @@ if __name__ == "__main__":
             post_content = post.find_element_by_css_selector(indexPageLocators.post_content)
             post_content = post_content.text
             # print('post_content:',post_content)
-            post_content.replace(str(post_author),"")
+            post_content = post_content.replace(post_author," ")
             post_content = post_content.replace('"','\'')
 
             try:
@@ -113,7 +114,7 @@ if __name__ == "__main__":
     print("    <p>lists len : ", len(data_lists),"</p>")
 
     print('7. save data to json~')
-    functions.saveJsonData(data_lists,python3)
+    functions.saveJsonData(data_lists,'python3')
 
     print('8. done!!!!!!')
     driver.quit()#關閉瀏覽器
