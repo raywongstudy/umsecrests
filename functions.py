@@ -1,6 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By#for the selector use by
-from time import sleep
+from time import sleep 
 
 import io #for the file
 import json
@@ -11,12 +11,24 @@ class indexPageFunctions(object):
 
     def clickShowAllComments(driver):
         try:
-            driver.execute_script("check = document.querySelectorAll('a[data-testid=\"UFI2ViewOptionsSelector/link\"]');\
-                                    for(let i = 0; i < check.length; i++){\
-                                        console.log(check[i]);\
-                                        check[i].click();\
-                                        document.querySelectorAll('div[data-testid=\"UFI2ViewOptionsSelector/menuOption\"]')[2].click()\
-                                    }")
+            driver.execute_script("check = document.querySelectorAll('a[data-ordering=\"RANKED_THREADED\"]');\
+                            for(let i = 0; i < check.length; i++){\
+                                check[i].click();\
+                                document.querySelectorAll('._54ni.__MenuItem > a')[2].click()\
+                            }")
+            sleep(3)
+            try:
+                for i in range(2):
+                    driver.execute_script("all_more_comments = document.querySelectorAll('._4sxc._42ft');\
+                                            for(let i = 0; i < all_more_comments.length; i++){\
+                                                all_more_comments[i].click()\
+                                            }")
+                driver.execute_script("all_more_reply = document.querySelectorAll('._4sso._4ssp');\
+                        for(let i = 0; i < all_more_reply.length; i++){\
+                            all_more_reply[i].click()\
+                        }")
+            except:
+                print('can not open the more comments')
         except:
             print('clickShowAllComments error')
 

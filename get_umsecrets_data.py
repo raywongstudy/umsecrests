@@ -1,6 +1,6 @@
 # -*- coding:UTF-8 -*-
 # Here for the import library
-from selenium import webdriver
+from selenium import webdriver 
 from selenium.webdriver.common.keys import Keys
 from time import sleep
 from selenium.webdriver.common.by import By#for the selector use by
@@ -10,6 +10,9 @@ from selenium.webdriver.chrome.options import Options
 from functions import indexPageFunctions
 from locators.umsecrets_locators import indexPageLocators
 
+#default value
+scroll_times = 5
+
 #set functions = indexPageFunctions
 functions = indexPageFunctions
 # Here for cacl the runing time
@@ -17,10 +20,10 @@ start_time = time.time()
 
 # Here for the headless options
 chrome_options = webdriver.ChromeOptions()
-chrome_options.add_argument('--headless')
-chrome_options.add_argument('--no-sandbox')
-chrome_options.add_argument('--disable-gpu')
-chrome_options.add_argument('--disable-dev-shm-usage')
+# chrome_options.add_argument('--headless')
+# chrome_options.add_argument('--no-sandbox')
+# chrome_options.add_argument('--disable-gpu')
+# chrome_options.add_argument('--disable-dev-shm-usage')
 
 #open url setting 
 url = 'https://www.facebook.com/New-UM-Secrets-Backup-367101790658487'
@@ -43,11 +46,17 @@ if __name__ == "__main__":
     driver.implicitly_wait(10)
 
     driver.get(url)
+    sleep(1)
+    #some error handle
+    try:
+        driver.find_element_by_css_selector('.autofocus.layerCancel._4jy0._4jy3._4jy1._51sy.selected._42ft').click()
+    except:
+        print('can not find the error alert to handle')
 
     #1 load more posts
     print('1. load more posts~')
-    scroll_time = input("    How many scroll times:")
-    functions.loadMorePosts(driver,int(scroll_time))
+    # scroll_time = input("    How many scroll times:")
+    functions.loadMorePosts(driver,int(scroll_times))
 
     #2 delete the login banner
     print('2. delete the login banner~')
@@ -57,9 +66,9 @@ if __name__ == "__main__":
     print('3. click show all comments~')
     functions.clickShowAllComments(driver)
 
-    #4 click more button
-    print('4. click more comments button~')
-    functions.click_more_btn(driver)
+    # #4 click more button
+    # print('4. click more comments button~')
+    # functions.click_more_btn(driver)
 
     #5 click all detail button
     print('5. click posts and comments detail~')
@@ -115,7 +124,8 @@ if __name__ == "__main__":
 
     print('7. save data to json~')
     functions.saveJsonData(data_lists,'python3')
-
+    
+    sleep(1000)
     print('8. done!!!!!!')
     driver.quit()#關閉瀏覽器
 
